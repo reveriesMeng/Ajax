@@ -4,13 +4,11 @@ jsonp('https://api.map.baidu.com/api?v=2.0&ak=Dv1NMU23dh1sGS9n2tUouDEYY96Dfzh3&s
 window.onload = function () {
     //请求天气车数据
     btn.addEventListener('click',function () {
-        jsonp(createUrl()[0]);
-        jsonp(createUrl()[1]);
+        jsonp(createUrl());
     });
     text.addEventListener('keydown', function (e){
         if (e.keyCode == 13) {
-            jsonp(createUrl()[0]);
-            jsonp(createUrl()[1]);
+            jsonp(createUrl());
         }
     });
 }
@@ -20,8 +18,7 @@ function getCity() {
         //去掉城市名后的"市"
         var city = result.name.substring(0, result.name.length - 1);
         //请求当前城市的天气数据
-        jsonp(createUrl(city)[0]);
-        jsonp(createUrl(city)[1]);
+        jsonp(createUrl(city));
     }
     var cityName = new BMap.LocalCity();
     cityName.get(city);
@@ -145,8 +142,6 @@ function createUrl() {
     } else {
         cityName = arguments[0];
     }
-    var urls = [];
-    urls[0] = 'https://sapi.k780.com/?app=weather.future&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json&jsoncallback=getWeather&weaid=' + encodeURI(cityName);
-    urls[1] = 'https://api.map.baidu.com/telematics/v3/weather?output=json&ak=FK9mkfdQsloEngodbFl4FeY3&callback=getTodayWeather&location=' + encodeURI(cityName);
-    return urls;
+    var url = 'https://sapi.k780.com/?app=weather.future&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json&jsoncallback=getWeather&weaid=' + encodeURI(cityName);
+    return url;
 }
