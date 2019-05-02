@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script type="text/javascript" src="./myAjax.js"></script>
+</head>
+
+<body>
+
+    用户：<input type="text" id="user"><br>
+    密码：<input type="password" id="pass"><br>
+    <button id="log">登陆</button><br>
+    <button id="reg">注册</button>
+
+    <script type="text/javascript">
+    window.onload = function() {
+        function $(divid) {
+            return document.getElementById(divid);
+        }
+
+        $('log').onclick = function() {
+            myAjax({
+                url: "/log",
+                Type: "post",
+                data: { user: $("user").value, pass: $("pass").value },
+                success: function(response) {
+                    if (response.ok) {
+                        alert(response.message);
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function(status) {
+                    alert("通信错误");
+                }
+            });
+        }
+
+        $('reg').onclick = function() {
+            myAjax({
+                url: "/reg",
+                Type: "post",
+                data: { user: $("user").value, pass: $("pass").value },
+                success: function(response) {
+                    if (response.ok) {
+                        alert(response.message);
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function(status) {
+                    alert("通信错误");
+                }
+            });
+        }
+
+    }
+    </script>
+</body>
+
+</html>
